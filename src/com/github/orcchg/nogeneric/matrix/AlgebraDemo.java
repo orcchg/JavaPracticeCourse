@@ -19,14 +19,6 @@ public class AlgebraDemo {
     System.out.println(mat1.getTransposed());
     System.out.println(identity.getTransposed());
     
-    System.out.println(mat1.getInversed());
-    System.out.println(identity.getInversed());
-    
-    System.out.println(mat1.getInversed().mul(mat1));
-    System.out.println(identity.getInversed().mul(identity));
-    System.out.println("Inversion: " + mat1.getInversed().mul(mat1).equals(identity3));
-    System.out.println("Inverted:\n" + mat1.getInversed().mul(mat1));
-    
     System.out.println(mat1.determinant());
     System.out.println(identity.determinant());
   }
