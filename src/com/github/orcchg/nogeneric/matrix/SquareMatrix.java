@@ -66,7 +66,7 @@ public class SquareMatrix {
     }
     for (int i = 0; i < mElements.length; ++i) {
       for (int j = 0; j < mElements.length; ++j) {
-        if (Math.abs(mElements[i][j] - other.mElements[i][j]) >= SquareMatrix.epsilon) {
+        if (!elementEquals(mElements[i][j], other.mElements[i][j])) {
           return false;
         }
       }
@@ -234,10 +234,17 @@ public class SquareMatrix {
     StringBuilder str = new StringBuilder();
     for (int i = 0; i < mElements.length; ++i) {
       for (int j = 0; j + 1 < mElements.length; ++j) {
-        str.append(Double.toString(mElements[i][j])).append(", ");
+        if (elementEquals(mElements[i][j], 0.0)) {
+          mElements[i][j] = Math.abs(mElements[i][j]);
+        }
+        str.append(String.format("%9.4f", mElements[i][j])).append(", ");
       }
-      str.append(Double.toString(mElements[i][mElements.length - 1])).append("\n");
+      str.append(String.format("%9.4f", mElements[i][mElements.length - 1])).append("\n");
     }
     return str.toString();
+  }
+  
+  private boolean elementEquals(double lhs, double rhs) {
+    return Math.abs(lhs - rhs) < SquareMatrix.epsilon;
   }
 }
