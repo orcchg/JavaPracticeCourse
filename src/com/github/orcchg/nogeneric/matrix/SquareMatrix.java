@@ -3,6 +3,7 @@ package com.github.orcchg.nogeneric.matrix;
 import java.util.Arrays;
 
 public class SquareMatrix {
+  private static final double epsilon = 1e-11;
   private double[][] mElements;
   
   public SquareMatrix(int dim) {
@@ -59,8 +60,17 @@ public class SquareMatrix {
     if (getClass() != obj.getClass())
       return false;
     SquareMatrix other = (SquareMatrix) obj;
-    if (!Arrays.deepEquals(mElements, other.mElements))
-      return false;
+    if (mElements.length != other.mElements.length) {
+      System.err.println("Incompatible matrices!");
+      throw new RuntimeException();
+    }
+    for (int i = 0; i < mElements.length; ++i) {
+      for (int j = 0; j < mElements.length; ++j) {
+        if (Math.abs(mElements[i][j] - other.mElements[i][j]) >= SquareMatrix.epsilon) {
+          return false;
+        }
+      }
+    }
     return true;
   }
 
