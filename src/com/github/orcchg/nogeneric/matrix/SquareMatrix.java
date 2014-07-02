@@ -99,7 +99,7 @@ public class SquareMatrix extends Matrix {
   
   public SquareMatrix getInversed() throws SingularSquareMatrixException {
     double det = determinant();
-    if (det == 0.0) {
+    if (elementEquals(det, 0.0)) {
       throw new SingularSquareMatrixException("Singular matrix!");
     }
     SquareMatrix mat = new SquareMatrix(getDims());
