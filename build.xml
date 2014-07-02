@@ -7,9 +7,14 @@
 
 	<target name="all" description="Build sources and unit-tests" depends="compile"/>
 
-	<target name="compile" description="Compiling sources">
+	<target name="compile" description="Compiling sources" depends="make.dirs">
 		<javac destdir="bin/classes" classpathref="project_classpath">
 			<src path="src/com/github/orcchg/nogeneric/matrix"/>
 		</javac>
+	</target>
+
+	<target name="make.dirs" description="Makes directory for byte-code">
+		<mkdir dir="bin"/>
+		<mkdir dir="bin/classes"/>
 	</target>
 </project>
