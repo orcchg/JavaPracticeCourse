@@ -1,0 +1,15 @@
+<project name="AlgebraLib" default="all">
+	<path id="project_classpath">
+		<fileset dir="libs_system">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="all" description="Build sources and unit-tests" depends="compile"/>
+
+	<target name="compile" description="Compiling sources">
+		<javac destdir="bin/classes" classpathref="project_classpath">
+			<src path="src/com/github/orcchg/nogeneric/matrix"/>
+		</javac>
+	</target>
+</project>
